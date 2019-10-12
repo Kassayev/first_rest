@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.math.BigInteger;
 import java.util.Date;
 
 @Entity
@@ -29,7 +30,7 @@ public class Employee implements Serializable {
     private String patronymic;
 
     @NotBlank
-    private Long telephone;
+    private String telephone;
 
     @NotBlank
     private String email;
@@ -50,10 +51,6 @@ public class Employee implements Serializable {
     @LastModifiedDate
     private Date updatedAt;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -66,7 +63,7 @@ public class Employee implements Serializable {
         this.patronymic = patronymic;
     }
 
-    public void setTelephone(Long telephone) {
+    public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
 
@@ -98,7 +95,7 @@ public class Employee implements Serializable {
         return patronymic;
     }
 
-    public Long getTelephone() {
+    public String getTelephone() {
         return telephone;
     }
 
