@@ -12,12 +12,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:8081")
 public class EmployeeController {
 
     @Autowired
     EmployeeRepository employeeRepository;
 
-    @CrossOrigin(origins = "http://localhost:8081")
     @GetMapping("/employees")
     public List<Employee> getAllEmployees() {
         return employeeRepository.findAll();
@@ -34,7 +34,6 @@ public class EmployeeController {
         return employeeRepository.findById(employeeId).orElseThrow(() -> new ResourceNotFoundException("Employee", "id", employeeId));
     }
 
-    @CrossOrigin(origins = "http://localhost:8081")
     @PutMapping("/employee/{id}")
     public Employee updateEmployee(@PathVariable(value = "id") Long employeeId, @Valid @RequestBody Employee employeeDetails) {
         Employee employee = employeeRepository.findById(employeeId).orElseThrow(() -> new ResourceNotFoundException("Employee", "id", employeeId));
@@ -51,7 +50,6 @@ public class EmployeeController {
         return updatedEmployee;
     }
 
-    @CrossOrigin(origins = "http://localhost:8081")
     @DeleteMapping("/employee/{id}")
     public ResponseEntity<?> deleteEmployee(@PathVariable(value = "id") Long employeeId){
         Employee employee  = employeeRepository.findById(employeeId).orElseThrow(()-> new ResourceNotFoundException("Employee","id",employeeId));
